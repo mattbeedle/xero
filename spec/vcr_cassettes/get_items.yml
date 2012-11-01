@@ -1,0 +1,67 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.xero.com/api.xro/2.0/Items
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      accept:
+      - ! '*/*'
+      user-agent:
+      - OAuth gem v0.4.7
+      authorization:
+      - OAuth oauth_consumer_key="TYMATGTPO5QEAWP8I307AOMBHSOJI2", oauth_nonce="G24UhIQgnPuY1mwi1DJmix101h9HWySKyHwk2KEuLM",
+        oauth_signature="Mj3GZT6NH33hpgTS1MEr76nqYuxRFJd9yOIEpTZIyWk5YjYI0WrCrB03Vxyy8wzb2sSOl1iUJ1ZpvcSue37ZeatfxbwR3qDvvxJHDRrQUfE8wj5vByQej9wA2%2BIs0tJYN%2FcRMn2Jv%2BJ1N%2BDXGKuziF98elzjEpjYAUPAPxVVwO8%3D",
+        oauth_signature_method="RSA-SHA1", oauth_timestamp="1351722302", oauth_token="TYMATGTPO5QEAWP8I307AOMBHSOJI2",
+        oauth_version="1.0"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      cache-control:
+      - private
+      content-type:
+      - text/xml; charset=utf-8
+      server:
+      - Microsoft-IIS/7.0
+      x-aspnetmvc-version:
+      - '2.0'
+      www-authenticate:
+      - OAuth Realm="api.xero.com"
+      x-aspnet-version:
+      - 4.0.30319
+      x-s:
+      - api2
+      x-powered-by:
+      - ASP.NET
+      date:
+      - Wed, 31 Oct 2012 22:24:57 GMT
+      connection:
+      - close
+      content-length:
+      - '1366'
+    body:
+      encoding: US-ASCII
+      string: ! "<Response xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\r\n
+        \ <Id>c4b25892-8731-48cc-b355-d90a95b312fd</Id>\r\n  <Status>OK</Status>\r\n
+        \ <ProviderName>GoHiring</ProviderName>\r\n  <DateTimeUTC>2012-10-31T22:24:58.478193Z</DateTimeUTC>\r\n
+        \ <Items>\r\n    <Item>\r\n      <ItemID>99213658-83c4-438a-b104-1172b1e69790</ItemID>\r\n
+        \     <Code>monster</Code>\r\n      <Description>Just Testing</Description>\r\n
+        \     <UpdatedDateUTC>2012-10-27T17:50:23.633</UpdatedDateUTC>\r\n      <PurchaseDetails>\r\n
+        \       <UnitPrice>900.00</UnitPrice>\r\n        <AccountCode>620</AccountCode>\r\n
+        \       <TaxType>NONE</TaxType>\r\n      </PurchaseDetails>\r\n      <SalesDetails>\r\n
+        \       <UnitPrice>995.00</UnitPrice>\r\n        <AccountCode>200</AccountCode>\r\n
+        \       <TaxType>OUTPUT</TaxType>\r\n      </SalesDetails>\r\n    </Item>\r\n
+        \   <Item>\r\n      <ItemID>16cb4513-626b-4f14-a8be-ec505f5b8934</ItemID>\r\n
+        \     <Code>stepstone</Code>\r\n      <UpdatedDateUTC>2012-10-31T08:59:58.013</UpdatedDateUTC>\r\n
+        \     <PurchaseDetails>\r\n        <UnitPrice>500.00</UnitPrice>\r\n        <AccountCode>620</AccountCode>\r\n
+        \       <TaxType>NONE</TaxType>\r\n      </PurchaseDetails>\r\n      <SalesDetails>\r\n
+        \       <UnitPrice>1095.00</UnitPrice>\r\n        <AccountCode>200</AccountCode>\r\n
+        \       <TaxType>OUTPUT</TaxType>\r\n      </SalesDetails>\r\n    </Item>\r\n
+        \ </Items>\r\n</Response>"
+    http_version: '1.1'
+  recorded_at: Wed, 31 Oct 2012 22:25:04 GMT
+recorded_with: VCR 2.2.5

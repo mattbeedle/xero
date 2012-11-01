@@ -1,0 +1,61 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.xero.com/api.xro/2.0/Items/99213658-83c4-438a-b104-1172b1e69790
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      accept:
+      - ! '*/*'
+      user-agent:
+      - OAuth gem v0.4.7
+      authorization:
+      - OAuth oauth_consumer_key="TYMATGTPO5QEAWP8I307AOMBHSOJI2", oauth_nonce="Ge836OV5Rp9fcFOwuiqOZDIzPVC9Axu1vFo90Fyg",
+        oauth_signature="UGjzOl23HElYnJ6uNTH0WyRTnBSXLK%2Fpq3prqgF5TLW5V3t7nS8cTL78VEyevn8S%2BSKVhkg1YAs%2FDtBMK1vyO8MJM0K8E5VZp1l8GHKOCl4IkBwwv%2Bk6iCG9G8w3X0iij0bCGDUJU9kVmxr3niBC4GsBZt5Ji%2FMj22Uk3ul%2Flnc%3D",
+        oauth_signature_method="RSA-SHA1", oauth_timestamp="1351722300", oauth_token="TYMATGTPO5QEAWP8I307AOMBHSOJI2",
+        oauth_version="1.0"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      cache-control:
+      - private
+      content-type:
+      - text/xml; charset=utf-8
+      server:
+      - Microsoft-IIS/7.0
+      x-aspnetmvc-version:
+      - '2.0'
+      www-authenticate:
+      - OAuth Realm="api.xero.com"
+      x-aspnet-version:
+      - 4.0.30319
+      x-s:
+      - api2
+      x-powered-by:
+      - ASP.NET
+      date:
+      - Wed, 31 Oct 2012 22:24:56 GMT
+      connection:
+      - close
+      content-length:
+      - '864'
+    body:
+      encoding: US-ASCII
+      string: ! "<Response xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\r\n
+        \ <Id>582bf4e5-d340-494a-954d-d35d3b41552c</Id>\r\n  <Status>OK</Status>\r\n
+        \ <ProviderName>GoHiring</ProviderName>\r\n  <DateTimeUTC>2012-10-31T22:24:56.5094556Z</DateTimeUTC>\r\n
+        \ <Items>\r\n    <Item>\r\n      <ItemID>99213658-83c4-438a-b104-1172b1e69790</ItemID>\r\n
+        \     <Code>monster</Code>\r\n      <Description>Just Testing</Description>\r\n
+        \     <UpdatedDateUTC>2012-10-27T17:50:23.633</UpdatedDateUTC>\r\n      <PurchaseDetails>\r\n
+        \       <UnitPrice>900.00</UnitPrice>\r\n        <AccountCode>620</AccountCode>\r\n
+        \       <TaxType>NONE</TaxType>\r\n      </PurchaseDetails>\r\n      <SalesDetails>\r\n
+        \       <UnitPrice>995.00</UnitPrice>\r\n        <AccountCode>200</AccountCode>\r\n
+        \       <TaxType>OUTPUT</TaxType>\r\n      </SalesDetails>\r\n    </Item>\r\n
+        \ </Items>\r\n</Response>"
+    http_version: '1.1'
+  recorded_at: Wed, 31 Oct 2012 22:25:02 GMT
+recorded_with: VCR 2.2.5

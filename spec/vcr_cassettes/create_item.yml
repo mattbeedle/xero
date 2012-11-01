@@ -1,0 +1,67 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.xero.com/api.xro/2.0/Items
+    body:
+      encoding: US-ASCII
+      string: xml=%3C%3Fxml%20version%3D%221.0%22%20encoding%3D%22UTF-8%22%3F%3E%0A%3CItem%3E%0A%20%20%3CCode%3Etest-product%3C%2FCode%3E%0A%20%20%3CDescription%3Ejust%20testing%3C%2FDescription%3E%0A%20%20%3CPurchaseDetails%3E%0A%20%20%20%20%3CUnitPrice%3E100.0%3C%2FUnitPrice%3E%0A%20%20%20%20%3CAccountCode%3E620%3C%2FAccountCode%3E%0A%20%20%20%20%3CTaxType%3ENONE%3C%2FTaxType%3E%0A%20%20%3C%2FPurchaseDetails%3E%0A%20%20%3CSalesDetails%3E%0A%20%20%20%20%3CUnitPrice%3E550.0%3C%2FUnitPrice%3E%0A%20%20%20%20%3CAccountCode%3E200%3C%2FAccountCode%3E%0A%20%20%20%20%3CTaxType%3ENONE%3C%2FTaxType%3E%0A%20%20%3C%2FSalesDetails%3E%0A%3C%2FItem%3E%0A
+    headers:
+      charset:
+      - utf-8
+      accept:
+      - ! '*/*'
+      user-agent:
+      - OAuth gem v0.4.7
+      content-length:
+      - '0'
+      content-type:
+      - application/x-www-form-urlencoded
+      authorization:
+      - OAuth oauth_consumer_key="TYMATGTPO5QEAWP8I307AOMBHSOJI2", oauth_nonce="WjHGnLnDnucxzf3E3rmQtp0tMc6XvhgRztaGoWvnak",
+        oauth_signature="cRcWMsungkPWhPLkIHjjiKC3N0eRk4W%2BJQJWR%2BIg5u4B63xjWTf7VDtwid3qOUhkmSNiifj2QrcEf6VzCY7sI80qKqCOal7nOIkhPTm6bAwT%2BhK08lHJXx1hFj5UWGk7qv%2BXiJuuvCdRJIr5tibSxCUC6HQCiMW7wUmNkpw3p88%3D",
+        oauth_signature_method="RSA-SHA1", oauth_timestamp="1351722739", oauth_token="TYMATGTPO5QEAWP8I307AOMBHSOJI2",
+        oauth_version="1.0"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      cache-control:
+      - private
+      content-type:
+      - text/xml; charset=utf-8
+      server:
+      - Microsoft-IIS/7.0
+      x-aspnetmvc-version:
+      - '2.0'
+      www-authenticate:
+      - OAuth Realm="api.xero.com"
+      x-aspnet-version:
+      - 4.0.30319
+      x-s:
+      - api1
+      x-powered-by:
+      - ASP.NET
+      date:
+      - Wed, 31 Oct 2012 22:32:15 GMT
+      connection:
+      - close
+      content-length:
+      - '866'
+    body:
+      encoding: US-ASCII
+      string: ! "<Response xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\r\n
+        \ <Id>ea6d3a7e-3d84-42d8-9eb4-e750c5fa2215</Id>\r\n  <Status>OK</Status>\r\n
+        \ <ProviderName>GoHiring</ProviderName>\r\n  <DateTimeUTC>2012-10-31T22:32:16.3097322Z</DateTimeUTC>\r\n
+        \ <Items>\r\n    <Item>\r\n      <ItemID>bedd53d2-1a98-4184-b947-e4947af3cbc6</ItemID>\r\n
+        \     <Code>test-product</Code>\r\n      <Description>just testing</Description>\r\n
+        \     <UpdatedDateUTC>2012-10-31T22:32:16.28</UpdatedDateUTC>\r\n      <PurchaseDetails>\r\n
+        \       <UnitPrice>100.00</UnitPrice>\r\n        <AccountCode>620</AccountCode>\r\n
+        \       <TaxType>NONE</TaxType>\r\n      </PurchaseDetails>\r\n      <SalesDetails>\r\n
+        \       <UnitPrice>550.00</UnitPrice>\r\n        <AccountCode>200</AccountCode>\r\n
+        \       <TaxType>NONE</TaxType>\r\n      </SalesDetails>\r\n    </Item>\r\n
+        \ </Items>\r\n</Response>"
+    http_version: '1.1'
+  recorded_at: Wed, 31 Oct 2012 22:32:22 GMT
+recorded_with: VCR 2.2.5
