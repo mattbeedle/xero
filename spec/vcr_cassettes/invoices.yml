@@ -1,0 +1,62 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.xero.com/api.xro/2.0/Invoices
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      accept:
+      - ! '*/*'
+      user-agent:
+      - OAuth gem v0.4.7
+      authorization:
+      - OAuth oauth_consumer_key="TYMATGTPO5QEAWP8I307AOMBHSOJI2", oauth_nonce="9i3qSOxueUMxVHVtQNfFzcO30XJfQaMp4micswOA64",
+        oauth_signature="hRKXYSNYtW7JdoV9ls5XmLMj4y7OF68e1%2F%2BjwBIBnNLCPWEBYCURpL8orhntH%2FSQwrDSqjUG5igV2WijidCOcEs%2FmMpBt5SjgHVHsv7lPfPqlLaF3dePKOPYLLL8%2BhqzAxmLTicHboKzcm%2FUopUzm%2BFrpovov0GLuHeKH2Kkefg%3D",
+        oauth_signature_method="RSA-SHA1", oauth_timestamp="1351930677", oauth_token="TYMATGTPO5QEAWP8I307AOMBHSOJI2",
+        oauth_version="1.0"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      cache-control:
+      - private
+      content-type:
+      - text/xml; charset=utf-8
+      server:
+      - Microsoft-IIS/7.0
+      x-aspnetmvc-version:
+      - '2.0'
+      www-authenticate:
+      - OAuth Realm="api.xero.com"
+      x-aspnet-version:
+      - 4.0.30319
+      x-s:
+      - api1
+      x-powered-by:
+      - ASP.NET
+      date:
+      - Sat, 03 Nov 2012 08:17:58 GMT
+      connection:
+      - close
+      content-length:
+      - '1128'
+    body:
+      encoding: US-ASCII
+      string: ! "<Response xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\r\n
+        \ <Id>c2e9a9bf-9e4c-4720-81cb-fa6c80a4ae6d</Id>\r\n  <Status>OK</Status>\r\n
+        \ <ProviderName>GoHiring</ProviderName>\r\n  <DateTimeUTC>2012-11-03T08:17:58.8617518Z</DateTimeUTC>\r\n
+        \ <Invoices>\r\n    <Invoice>\r\n      <Contact>\r\n        <ContactID>9685e9b2-2219-4257-9a50-2f91f240b165</ContactID>\r\n
+        \       <Name>Just Testing</Name>\r\n      </Contact>\r\n      <Date>2012-12-01T00:00:00</Date>\r\n
+        \     <DueDate>2012-12-03T00:00:00</DueDate>\r\n      <Status>AUTHORISED</Status>\r\n
+        \     <LineAmountTypes>Exclusive</LineAmountTypes>\r\n      <SubTotal>995.00</SubTotal>\r\n
+        \     <TotalTax>0.00</TotalTax>\r\n      <Total>995.00</Total>\r\n      <UpdatedDateUTC>2012-10-30T13:58:46.433</UpdatedDateUTC>\r\n
+        \     <CurrencyCode>EUR</CurrencyCode>\r\n      <Type>ACCREC</Type>\r\n      <InvoiceID>7f9e9823-f6d7-4302-90a1-ba59f6884ce9</InvoiceID>\r\n
+        \     <InvoiceNumber>INV-0001</InvoiceNumber>\r\n      <AmountDue>995.00</AmountDue>\r\n
+        \     <AmountPaid>0.00</AmountPaid>\r\n      <HasAttachments>false</HasAttachments>\r\n
+        \   </Invoice>\r\n  </Invoices>\r\n</Response>"
+    http_version: '1.1'
+  recorded_at: Sat, 03 Nov 2012 08:17:59 GMT
+recorded_with: VCR 2.2.5

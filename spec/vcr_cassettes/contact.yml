@@ -1,0 +1,66 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.xero.com/api.xro/2.0/Contacts/9685e9b2-2219-4257-9a50-2f91f240b165
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      accept:
+      - ! '*/*'
+      user-agent:
+      - OAuth gem v0.4.7
+      authorization:
+      - OAuth oauth_consumer_key="TYMATGTPO5QEAWP8I307AOMBHSOJI2", oauth_nonce="qtJnJ4xJbLO519OHDnGtgaDSUK5mfGdH7vJkJ2syM4",
+        oauth_signature="eGLzjbZkdV9OK525YCLjTWJimjSFhGjLH2fUL26R7PonxEdsOzk9VAk%2F9LwbSs2aN5tZpiC8SccGJyMaWaf2BNJm42LTP9wakzWwXn%2FMOcBoxr880%2FDTDYsf3UubpID%2BqcXL7wFhuyo%2FN%2F%2FIS9V%2F8UVzNl9c5JopQlzQkuQ5AKE%3D",
+        oauth_signature_method="RSA-SHA1", oauth_timestamp="1351947173", oauth_token="TYMATGTPO5QEAWP8I307AOMBHSOJI2",
+        oauth_version="1.0"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      cache-control:
+      - private
+      content-type:
+      - text/xml; charset=utf-8
+      server:
+      - Microsoft-IIS/7.0
+      x-aspnetmvc-version:
+      - '2.0'
+      www-authenticate:
+      - OAuth Realm="api.xero.com"
+      x-aspnet-version:
+      - 4.0.30319
+      x-s:
+      - api2
+      x-powered-by:
+      - ASP.NET
+      date:
+      - Sat, 03 Nov 2012 12:52:45 GMT
+      connection:
+      - close
+      content-length:
+      - '1299'
+    body:
+      encoding: US-ASCII
+      string: ! "<Response xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\r\n
+        \ <Id>7b9fafb6-9497-4cf4-9d99-0115c2995b2b</Id>\r\n  <Status>OK</Status>\r\n
+        \ <ProviderName>GoHiring</ProviderName>\r\n  <DateTimeUTC>2012-11-03T12:52:45.6421493Z</DateTimeUTC>\r\n
+        \ <Contacts>\r\n    <Contact>\r\n      <ContactID>9685e9b2-2219-4257-9a50-2f91f240b165</ContactID>\r\n
+        \     <ContactStatus>ACTIVE</ContactStatus>\r\n      <Name>Just Testing</Name>\r\n
+        \     <FirstName>Test</FirstName>\r\n      <LastName>Person</LastName>\r\n
+        \     <EmailAddress>matt@geeland.com</EmailAddress>\r\n      <Addresses>\r\n
+        \       <Address>\r\n          <AddressType>STREET</AddressType>\r\n        </Address>\r\n
+        \       <Address>\r\n          <AddressType>POBOX</AddressType>\r\n        </Address>\r\n
+        \     </Addresses>\r\n      <Phones>\r\n        <Phone>\r\n          <PhoneType>DDI</PhoneType>\r\n
+        \       </Phone>\r\n        <Phone>\r\n          <PhoneType>DEFAULT</PhoneType>\r\n
+        \       </Phone>\r\n        <Phone>\r\n          <PhoneType>MOBILE</PhoneType>\r\n
+        \       </Phone>\r\n        <Phone>\r\n          <PhoneType>FAX</PhoneType>\r\n
+        \       </Phone>\r\n      </Phones>\r\n      <UpdatedDateUTC>2012-10-30T13:59:49.787</UpdatedDateUTC>\r\n
+        \     <IsSupplier>false</IsSupplier>\r\n      <IsCustomer>true</IsCustomer>\r\n
+        \   </Contact>\r\n  </Contacts>\r\n</Response>"
+    http_version: '1.1'
+  recorded_at: Sat, 03 Nov 2012 12:52:55 GMT
+recorded_with: VCR 2.2.5

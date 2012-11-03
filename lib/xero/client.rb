@@ -1,6 +1,5 @@
 module Xero
   class Client
-
     attr_accessor :client
 
     def initialize(options = {})
@@ -10,17 +9,45 @@ module Xero
       )
     end
 
+    def contacts(options = {})
+      response = self.connection.get(Xero::Models::Contact.path, options)
+      contacts_attributes = hash_from_response(response, 'Contacts')
+      unless contacts_attributes.is_a?(Array)
+        contacts_attributes = [contacts_attributes]
+      end
+      contacts_attributes.map { |attrs| Xero::Models::Contact.new(attrs) }
+    end
+
+    def get_contact(contact_id)
+      response = self.connection.
+        get_by_id(Xero::Models::Contact.path, contact_id)
+      Xero::Models::Contact.new hash_from_response(response, 'Contacts')
+    end
+
     def get_item(item_id)
       response = self.connection.get_by_id(Xero::Models::Item.path, item_id)
-      item = cleanup_response(response, 'Items', 'Item')
-      Xero::Models::Item.new(item)
+      Xero::Models::Item.new(hash_from_response(response, 'Items'))
     end
 
     def items(options = {})
       response = self.connection.get(Xero::Models::Item.path, options)
-      items = cleanup_response(response, 'Items', 'Item')
-
+      items = hash_from_response(response, 'Items')
       items.map { |item| Xero::Models::Item.new(item) }
+    end
+
+    def get_invoice(invoice_id)
+      response = self.connection.
+        get_by_id(Xero::Models::Invoice.path, invoice_id)
+      Xero::Models::Invoice.new hash_from_response(response, 'Invoices')
+    end
+
+    def invoices(options = {})
+      response = self.connection.get(Xero::Models::Invoice.path, options)
+      invoices_attributes = hash_from_response(response, 'Invoices')
+      unless invoices_attributes.is_a?(Array)
+        invoices_attributes = [invoices_attributes]
+      end
+      invoices_attributes.map { |attrs| Xero::Models::Invoice.new(attrs) }
     end
 
     def save(model)
@@ -48,25 +75,9 @@ module Xero
       @connection ||= Xero::Connection.new
     end
 
-    def cleanup_response(response, plural, singular)
-      items = Hash.from_xml(response.body)['Response'][plural][singular]
-      if items.is_a?(Array)
-        items.each { |item| cleanup_hash(item) }
-      else
-        cleanup_hash(items)
-      end
-      items
-    end
-
-    def cleanup_hash(hash)
-      hash.keys.each do |key|
-        value = hash.delete(key)
-        value = cleanup_hash(value) if value.is_a?(Hash)
-        key = key.underscore.singularize
-        key = 'id' if key.match(/_id/)
-        hash[key] = value
-      end
-      hash
+    def hash_from_response(response, klass_name)
+      attributes = Hash.from_xml(response.body)['Response']
+      attributes[klass_name][klass_name.singularize]
     end
   end
 end
