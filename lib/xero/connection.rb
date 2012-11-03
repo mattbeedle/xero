@@ -40,9 +40,6 @@ module Xero
       make_request(:post, path, { xml: payload })
     end
 
-    def put
-    end
-
     private
 
     def make_request(method, path, params = {})

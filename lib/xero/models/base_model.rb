@@ -2,6 +2,7 @@ module Xero
   module Models
     class BaseModel
       include ActiveAttr::Model
+      include Xero::Associations
 
       class << self
         attr_accessor :path
@@ -13,7 +14,7 @@ module Xero
 
       def initialize(attributes = {})
         @new_record = true
-        super(attributes)
+        cleanup_hash(attributes).each { |key, value| send("#{key}=", value) }
       end
 
       def save
@@ -30,6 +31,17 @@ module Xero
           attrs[key.to_s.camelize] = value.to_s
         end
         attrs
+      end
+
+      def cleanup_hash(hash)
+        hash.keys.each do |key|
+          value = hash.delete(key)
+          value = cleanup_hash(value) if value.is_a?(Hash)
+          key = key.to_s.underscore
+          key = 'id' if key.match(/_id/)
+          hash[key] = value
+        end
+        hash
       end
 
       def persisted?

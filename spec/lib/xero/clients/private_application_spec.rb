@@ -4,14 +4,138 @@ describe Xero::Clients::PrivateApplication do
 
   let(:client) { Xero::Clients::PrivateApplication.new }
 
+  describe '#contacts' do
+    before { configure }
+
+    let(:contacts) do
+      VCR.use_cassette('contacts') { client.contacts }
+    end
+
+    it 'should return an array' do
+      contacts.should be_a(Array)
+    end
+
+    it 'should contain contacts' do
+      contacts.first.should be_a(Xero::Models::Contact)
+    end
+
+    it 'should populate the contacts id' do
+      contacts.first.id.should_not be_blank
+    end
+  end
+
+  describe '#get_contact' do
+    before { configure }
+
+    let(:contacts) do
+      VCR.use_cassette('contacts') { client.contacts }
+    end
+
+    let(:contact) do
+      VCR.use_cassette('contact') do
+        client.get_contact(contacts.first.id)
+      end
+    end
+
+    it 'should return a contact' do
+      contact.should be_a(Xero::Models::Contact)
+    end
+
+    it 'should populate the contact id' do
+      contact.id.should_not be_blank
+    end
+
+    it 'should populate the contact addresses' do
+      contact.addresses.first.should be_a(Xero::Models::Address)
+    end
+  end
+
+  describe '#get_invoice' do
+    before { configure }
+
+    let(:invoice) do
+      VCR.use_cassette('get_invoice') do
+        client.get_invoice('7f9e9823-f6d7-4302-90a1-ba59f6884ce9')
+      end
+    end
+
+    it 'should return an invoice' do
+      invoice.should be_a(Xero::Models::Invoice)
+    end
+
+    it 'should populate the type' do
+      invoice.type.should_not be_blank
+    end
+
+    it 'should populate the date' do
+      invoice.date.should_not be_blank
+    end
+
+    it 'should populate the due date' do
+      invoice.due_date.should_not be_blank
+    end
+
+    it 'should populate the invoice number' do
+      invoice.invoice_number.should_not be_blank
+    end
+
+    it 'should populate the total' do
+      invoice.total.should_not be_blank
+    end
+
+    it 'should populate the currency code' do
+      invoice.currency_code.should_not be_blank
+    end
+
+    it 'should populate the id' do
+      invoice.id.should_not be_blank
+    end
+
+    it 'should populate the total tax' do
+      invoice.total_tax.should_not be_blank
+    end
+
+    it 'should populate the invoice status' do
+      invoice.status.should eql('AUTHORISED')
+    end
+
+    it 'should populate the invoice contact' do
+      invoice.contact.should be_a(Xero::Models::Contact)
+    end
+
+    it 'should populate the contact data' do
+      invoice.contact.id.should_not be_blank
+    end
+  end
+
+  describe '#invoices' do
+    before { configure }
+
+    let(:invoices) do
+      VCR.use_cassette('invoices') { client.invoices }
+    end
+
+    it 'should return an array' do
+      invoices.should be_a(Array)
+    end
+
+    it 'should contain invoices' do
+      invoices.first.should be_a(Xero::Models::Invoice)
+    end
+
+    it 'should populate the invoice data' do
+      invoices.first.id.should_not be_blank
+    end
+  end
+
   describe '#save' do
     before { configure }
 
     let(:item) do
       Xero::Models::Item.new code: 'test-product',
         description: 'just testing',
-        purchase_detail: purchase_detail_attributes,
-        sales_detail: sales_detail_attributes
+        purchase_details: purchase_detail_attributes,
+        sales_details: sales_detail_attributes
     end
 
     let(:purchase_detail_attributes) do
@@ -23,9 +147,7 @@ describe Xero::Clients::PrivateApplication do
     end
 
     before do
-      VCR.use_cassette('create_item') do
-        client.save(item)
-      end
+      VCR.use_cassette('create_item') { client.save(item) }
     end
 
     it 'should populate the item id' do
@@ -80,15 +202,15 @@ describe Xero::Clients::PrivateApplication do
     end
 
     it 'should populate the item purchase detail' do
-      items.first.purchase_detail.should be_a(Xero::Models::ItemDetail)
+      items.first.purchase_details.should be_a(Xero::Models::ItemDetail)
     end
 
     it 'should populate the item sales detail' do
-      items.first.sales_detail.should be_a(Xero::Models::ItemDetail)
+      items.first.sales_details.should be_a(Xero::Models::ItemDetail)
     end
 
     it 'should populate the item purchase detail account code' do
-      items.first.purchase_detail.account_code.should_not be_blank
+      items.first.purchase_details.account_code.should_not be_blank
     end
   end
 end

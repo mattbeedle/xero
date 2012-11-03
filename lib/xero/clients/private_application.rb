@@ -1,7 +1,6 @@
 module Xero
   module Clients
     class PrivateApplication < Client
-
       def connection
         @connection ||= Xero::Connection.new(
           signature_method: 'RSA-SHA1',

@@ -9,8 +9,8 @@ describe Xero::Models::Item do
   describe 'to_xero_xml' do
     let(:item) do
       Xero::Models::Item.new(
-        purchase_detail: purchase_detail_attributes,
-        sales_detail: sales_detail_attributes,
+        purchase_details: purchase_detail_attributes,
+        sales_details: sales_detail_attributes,
         id: '34b3fc86-483e-4112-8106-9b23d36f925c',
         code: 'Monster',
         description: 'Test description'
@@ -64,56 +64,56 @@ describe Xero::Models::Item do
     end
   end
 
-  describe '#purchase_detail=' do
+  describe '#purchase_details=' do
 
     let(:item) { Xero::Models::Item.new }
 
     before do
-      item.purchase_detail = {
+      item.purchase_details = {
         unit_price: 100, account_code: '620', tax_type: 'NONE'
       }
     end
 
     it 'should add a new item detail to the item' do
-      item.purchase_detail.should be_a(Xero::Models::ItemDetail)
+      item.purchase_details.should be_a(Xero::Models::ItemDetail)
     end
 
     it 'should set the unit price' do
-      item.purchase_detail.unit_price.should eql(100.0)
+      item.purchase_details.unit_price.should eql(100.0)
     end
 
     it 'should set the account code' do
-      item.purchase_detail.account_code.should eql('620')
+      item.purchase_details.account_code.should eql('620')
     end
 
     it 'should set the tax type' do
-      item.purchase_detail.tax_type.should eql('NONE')
+      item.purchase_details.tax_type.should eql('NONE')
     end
   end
 
-  describe '#sales_detail=' do
+  describe '#sales_details=' do
     let(:item) { Xero::Models::Item.new }
 
     before do
-      item.sales_detail = {
+      item.sales_details = {
         unit_price: 550, account_code: '200', tax_type: 'NONE'
       }
     end
 
     it 'should add a new item detail to the item' do
-      item.sales_detail.should be_a(Xero::Models::ItemDetail)
+      item.sales_details.should be_a(Xero::Models::ItemDetail)
     end
 
     it 'should set the unit price' do
-      item.sales_detail.unit_price.should eql(550.0)
+      item.sales_details.unit_price.should eql(550.0)
     end
 
     it 'should set the account code' do
-      item.sales_detail.account_code.should eql('200')
+      item.sales_details.account_code.should eql('200')
     end
 
     it 'should set the tax type' do
-      item.sales_detail.tax_type.should eql('NONE')
+      item.sales_details.tax_type.should eql('NONE')
     end
   end
 end
