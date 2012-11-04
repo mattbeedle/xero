@@ -53,8 +53,10 @@ module Xero
     def save(model)
       model.tap do |item|
         response = self.connection.post(model.class.path, model.to_xero_xml)
-        attrs = Hash.from_xml(response.body)['Response']['Items']['Item']
-        model.id = attrs["#{model.class.to_s.demodulize}ID"]
+        attrs = Hash.from_xml(response.body)['Response'][
+          "#{model.class.to_s.demodulize.pluralize}"
+        ][model.class.to_s.demodulize]
+        model.attributes = attrs
         model.new_record = false
       end
     end

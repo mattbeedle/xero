@@ -14,7 +14,11 @@ module Xero
 
       def initialize(attributes = {})
         @new_record = true
-        cleanup_hash(attributes).each { |key, value| send("#{key}=", value) }
+        self.attributes = attributes
+      end
+
+      def attributes=(attrs)
+        cleanup_hash(attrs).each { |key, value| send("#{key}=", value) }
       end
 
       def save
@@ -25,10 +29,11 @@ module Xero
       def xero_attributes(attrs = nil)
         attrs ||= attributes.clone
         attrs.delete('id')
+        attrs.delete('updated_date_utc')
         attrs.keys.each do |key|
           value = attrs.delete(key)
           value = xero_attributes(value) if value.is_a?(Hash)
-          attrs[key.to_s.camelize] = value.to_s
+          attrs[key.to_s.camelize] = value.to_s unless value.blank?
         end
         attrs
       end

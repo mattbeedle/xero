@@ -16,22 +16,19 @@ module Xero
           end
 
           define_method "#{association_name}=" do |value|
+            klass = options[:class_name] || association_name.to_s.singularize
+            klass = "Xero::Models::#{klass.to_s.classify}".constantize
+
             if value.is_a?(Hash) && value[value.keys.first].is_a?(Array)
-              klass = options[:class_name] || association_name.to_s.singularize
-              klass = "Xero::Models::#{klass.to_s.classify}".constantize
               value[value.keys.first].each do |item|
                 self.send(association_name).send :<<, klass.new(item)
               end
+            elsif value.is_a?(Array) && value.all? { |a| a.is_a?(klass) }
+              instance_variable_set(
+                :"@#{association_name}", HasManyProxy.new(value)
+              )
             end
-
-            # if value.is_a?(Hash)
-            #   klass = options[:class_name] || association_name.to_s.singularize
-            #   value = "Xero::Models::#{klass.to_s.classify}".constantize.
-            #     new(value)
-            # end
-            # instance_variable_set(
-            #   :"@#{association_name}", HasManyProxy.new(value)
-            # )
+            self.send(association_name)
           end
         end
       end

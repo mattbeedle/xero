@@ -4,6 +4,8 @@ module Xero
 
       self.path = 'Invoices'
 
+      TYPES = ['ACCPAY', 'ACCREC']
+
       attribute :type
       attribute :date, type: Date
       attribute :due_date, type: Date
@@ -27,11 +29,22 @@ module Xero
       attribute :sent_to_contact, type: Boolean
       attribute :currency_rate
 
-      has_one :contact
+      has_one  :contact
       has_many :line_items
       has_many :payments
 
       validates :type, presence: true
+      validates :contact, presence: true
+      validates :line_items, presence: true
+
+      def to_xero_xml
+        xero_attributes(attributes.clone).
+          merge('Contact' => contact.xero_attributes).
+          merge('LineItems' => line_items.xero_attributes).
+          merge('Payments' => payments.xero_attributes).
+          to_xml(root: 'Invoice')
+      end
+
     end
   end
 end

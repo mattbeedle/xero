@@ -6,6 +6,10 @@ module Xero
         @target = ::Array.new(*args)
       end
 
+      def xero_attributes
+        target.map(&:xero_attributes)
+      end
+
       protected
 
       def target

@@ -1,0 +1,83 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.xero.com/api.xro/2.0/Invoices
+    body:
+      encoding: US-ASCII
+      string: xml=%3C%3Fxml%20version%3D%221.0%22%20encoding%3D%22UTF-8%22%3F%3E%0A%3CInvoice%3E%0A%20%20%3CType%3EACCREC%3C%2FType%3E%0A%20%20%3CContact%3E%0A%20%20%20%20%3CName%3EXero%20Gem%20Test%20Contact%3C%2FName%3E%0A%20%20%3C%2FContact%3E%0A%20%20%3CLineItems%20type%3D%22array%22%3E%0A%20%20%20%20%3CLineItem%3E%0A%20%20%20%20%20%20%3CDescription%3EA%20test%20line%20item%20from%20the%20xero%20gem%3C%2FDescription%3E%0A%20%20%20%20%20%20%3CQuantity%3E2.0%3C%2FQuantity%3E%0A%20%20%20%20%20%20%3CUnitAmount%3E150.5%3C%2FUnitAmount%3E%0A%20%20%20%20%20%20%3CAccountCode%3E200%3C%2FAccountCode%3E%0A%20%20%20%20%3C%2FLineItem%3E%0A%20%20%3C%2FLineItems%3E%0A%20%20%3CPayments%20type%3D%22array%22%2F%3E%0A%3C%2FInvoice%3E%0A
+    headers:
+      charset:
+      - utf-8
+      accept:
+      - ! '*/*'
+      user-agent:
+      - OAuth gem v0.4.7
+      content-length:
+      - '0'
+      content-type:
+      - application/x-www-form-urlencoded
+      authorization:
+      - OAuth oauth_consumer_key="TYMATGTPO5QEAWP8I307AOMBHSOJI2", oauth_nonce="op3Dhu2katMP8le9vB7p3vC1UHIJPHjNmMSZD3RYJ4",
+        oauth_signature="XDBdEuzFijTwE68oekbRE%2BArEv0gt13xMS6izN7qkCf4s6BuRt%2FtIjFKPCHsDXBfaPS%2FVykUTG77PNvvciWc7ImNQv5c23Gm7Mrvtkzw3aH1g%2Fd75QknBp%2FBo8Ik80Rn87Ug3NgKTCCgzlXe7uJ5Nvps02E7LLsb2uWd4nLyEQA%3D",
+        oauth_signature_method="RSA-SHA1", oauth_timestamp="1351978764", oauth_token="TYMATGTPO5QEAWP8I307AOMBHSOJI2",
+        oauth_version="1.0"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      cache-control:
+      - private
+      content-type:
+      - text/xml; charset=utf-8
+      server:
+      - Microsoft-IIS/7.0
+      x-aspnetmvc-version:
+      - '2.0'
+      www-authenticate:
+      - OAuth Realm="api.xero.com"
+      x-aspnet-version:
+      - 4.0.30319
+      x-s:
+      - api2
+      x-powered-by:
+      - ASP.NET
+      date:
+      - Sat, 03 Nov 2012 21:39:22 GMT
+      connection:
+      - close
+      content-length:
+      - '2343'
+    body:
+      encoding: US-ASCII
+      string: ! "<Response xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\r\n
+        \ <Id>5321e06c-062f-4b99-9fe5-e48b56e04c5a</Id>\r\n  <Status>OK</Status>\r\n
+        \ <ProviderName>GoHiring</ProviderName>\r\n  <DateTimeUTC>2012-11-03T21:39:22.937917Z</DateTimeUTC>\r\n
+        \ <Invoices>\r\n    <Invoice>\r\n      <Contact>\r\n        <ContactID>a18c8d85-7ac1-4f14-b470-50adf56ee45f</ContactID>\r\n
+        \       <ContactStatus>ACTIVE</ContactStatus>\r\n        <Name>Xero Gem Test
+        Contact</Name>\r\n        <Addresses>\r\n          <Address>\r\n            <AddressType>POBOX</AddressType>\r\n
+        \         </Address>\r\n          <Address>\r\n            <AddressType>STREET</AddressType>\r\n
+        \         </Address>\r\n        </Addresses>\r\n        <Phones>\r\n          <Phone>\r\n
+        \           <PhoneType>DDI</PhoneType>\r\n          </Phone>\r\n          <Phone>\r\n
+        \           <PhoneType>MOBILE</PhoneType>\r\n          </Phone>\r\n          <Phone>\r\n
+        \           <PhoneType>FAX</PhoneType>\r\n          </Phone>\r\n          <Phone>\r\n
+        \           <PhoneType>DEFAULT</PhoneType>\r\n          </Phone>\r\n        </Phones>\r\n
+        \       <UpdatedDateUTC>2012-11-03T21:39:17.313</UpdatedDateUTC>\r\n        <IsSupplier>false</IsSupplier>\r\n
+        \       <IsCustomer>true</IsCustomer>\r\n      </Contact>\r\n      <Date>2012-11-03T00:00:00</Date>\r\n
+        \     <Status>DRAFT</Status>\r\n      <LineAmountTypes>Exclusive</LineAmountTypes>\r\n
+        \     <LineItems>\r\n        <LineItem>\r\n          <Description>A test line
+        item from the xero gem</Description>\r\n          <UnitAmount>150.50</UnitAmount>\r\n
+        \         <TaxType>OUTPUT</TaxType>\r\n          <TaxAmount>0.00</TaxAmount>\r\n
+        \         <LineAmount>301.00</LineAmount>\r\n          <AccountCode>200</AccountCode>\r\n
+        \         <Quantity>2.0000</Quantity>\r\n        </LineItem>\r\n      </LineItems>\r\n
+        \     <SubTotal>301.00</SubTotal>\r\n      <TotalTax>0.00</TotalTax>\r\n      <Total>301.00</Total>\r\n
+        \     <UpdatedDateUTC>2012-11-03T21:39:22.89</UpdatedDateUTC>\r\n      <CurrencyCode>EUR</CurrencyCode>\r\n
+        \     <Type>ACCREC</Type>\r\n      <InvoiceID>22f90b95-d952-4664-88f9-06900af307e5</InvoiceID>\r\n
+        \     <InvoiceNumber>INV-0003</InvoiceNumber>\r\n      <AmountDue>301.00</AmountDue>\r\n
+        \     <AmountPaid>0.00</AmountPaid>\r\n      <SentToContact>false</SentToContact>\r\n
+        \     <CurrencyRate>1.000000</CurrencyRate>\r\n      <HasAttachments>false</HasAttachments>\r\n
+        \   </Invoice>\r\n  </Invoices>\r\n</Response>"
+    http_version: '1.1'
+  recorded_at: Sat, 03 Nov 2012 21:39:27 GMT
+recorded_with: VCR 2.2.5

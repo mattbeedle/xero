@@ -131,31 +131,68 @@ describe Xero::Clients::PrivateApplication do
   describe '#save' do
     before { configure }
 
-    let(:item) do
-      Xero::Models::Item.new code: 'test-product',
-        description: 'just testing',
-        purchase_details: purchase_detail_attributes,
-        sales_details: sales_detail_attributes
+    context 'when saving an item' do
+      let(:item) do
+        Xero::Models::Item.new code: 'test-product',
+          description: 'just testing',
+          purchase_details: purchase_detail_attributes,
+          sales_details: sales_detail_attributes
+      end
+
+      let(:purchase_detail_attributes) do
+        { unit_price: 100, account_code: '620', tax_type: 'NONE' }
+      end
+
+      let(:sales_detail_attributes) do
+        { unit_price: 550, account_code: '200', tax_type: 'NONE' }
+      end
+
+      before do
+        VCR.use_cassette('create_item') { client.save(item) }
+      end
+
+      it 'should populate the item id' do
+        item.id.should_not be_blank
+      end
+
+      it 'should be persisted' do
+        item.should be_persisted
+      end
     end
 
-    let(:purchase_detail_attributes) do
-      { unit_price: 100, account_code: '620', tax_type: 'NONE' }
-    end
+    context 'when saving an invoice' do
+      let(:invoice) do
+        Xero::Models::Invoice.new(
+          type: 'ACCREC', contact: contact, line_items: line_items
+        )
+      end
 
-    let(:sales_detail_attributes) do
-      { unit_price: 550, account_code: '200', tax_type: 'NONE' }
-    end
+      let(:contact) do
+        Xero::Models::Contact.new(name: 'Xero Gem Test Contact')
+      end
 
-    before do
-      VCR.use_cassette('create_item') { client.save(item) }
-    end
+      let(:line_items) { [line_item] }
 
-    it 'should populate the item id' do
-      item.id.should_not be_blank
-    end
+      let(:line_item) do
+        Xero::Models::LineItem.new(
+          description: 'A test line item from the xero gem',
+          quantity: 2.0,
+          unit_amount: 150.5,
+          account_code: 200
+        )
+      end
 
-    it 'should be persisted' do
-      item.should be_persisted
+      before do
+        VCR.use_cassette('save_invoice') { client.save(invoice) }
+      end
+
+      it 'should persist the invoice' do
+        invoice.should be_persisted
+      end
+
+      it 'should populate the contact id' do
+        invoice.contact.id.should_not be_blank
+      end
     end
   end
 

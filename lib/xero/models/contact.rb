@@ -22,6 +22,8 @@ module Xero
 
       has_many :addresses
       has_many :phones
+
+      validates :name, presence: true
     end
   end
 end

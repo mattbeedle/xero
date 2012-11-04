@@ -4,7 +4,6 @@ module Xero
       extend ActiveSupport::Concern
 
       module ClassMethods
-
         def belongs_to(association_name, options = {})
 
           attr_accessor :"#{association_name}_id"

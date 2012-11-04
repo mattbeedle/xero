@@ -1,6 +1,6 @@
 # Xero
 
-TODO: Write a gem description
+ActiveModel compliant library for talking with the Xero API
 
 ## Installation
 
@@ -18,7 +18,10 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+    client = Xero::Clients::PrivateApplication.new
+    contacts = client.contacts
+    invoices = client.invoices
+    items = client.items
 
 ## Contributing
 
