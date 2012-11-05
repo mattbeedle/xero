@@ -24,6 +24,12 @@ module Xero
       has_many :phones
 
       validates :name, presence: true
+
+      def xero_attributes(attrs = nil)
+        attrs = super(attrs)
+        attrs.merge!('Addresses' => addresses.xero_attributes)
+        attrs
+      end
     end
   end
 end

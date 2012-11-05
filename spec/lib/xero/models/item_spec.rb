@@ -35,14 +35,6 @@ describe Xero::Models::Item do
       subject.should match(/SalesDetails/)
     end
 
-    it 'should not include the id' do
-      subject.should_not match(/ItemId/)
-    end
-
-    it 'should not include the id value' do
-      subject.should_not match(/34b3fc86\-483e\-4112\-8106\-9b23d36f925c/)
-    end
-
     it 'should include the code' do
       subject.should match(/Code/)
     end

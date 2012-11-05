@@ -20,6 +20,7 @@ Gem::Specification.new do |gem|
   gem.add_dependency('active_attr')
   gem.add_dependency('oauth')
 
+  gem.add_development_dependency('faker')
   gem.add_development_dependency('fakeweb')
   gem.add_development_dependency('guard')
   gem.add_development_dependency('guard-rspec')

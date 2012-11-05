@@ -53,12 +53,18 @@ module Xero
     def save(model)
       model.tap do |item|
         response = self.connection.post(model.class.path, model.to_xero_xml)
-        attrs = Hash.from_xml(response.body)['Response'][
-          "#{model.class.to_s.demodulize.pluralize}"
-        ][model.class.to_s.demodulize]
-        model.attributes = attrs
+
+        Hash.from_xml(response.body)['Response'].tap do |resp|
+          klass = model.class.to_s.demodulize
+          model.attributes = resp[klass.pluralize][klass]
+        end
+
         model.new_record = false
       end
+    end
+
+    def build_invoice(attributes = {})
+      build_model Xero::Models::Invoice, attributes
     end
 
     def build_item(attributes = {})

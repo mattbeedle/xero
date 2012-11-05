@@ -167,18 +167,32 @@ describe Xero::Clients::PrivateApplication do
         )
       end
 
+      let(:address) do
+        Xero::Models::Address.new(
+          address_type: 'STREET', address_line1: Faker::Address.street_address,
+          city: Faker::Address.city, region: Faker::Address.state,
+          postal_code: Faker::Address.zip_code, country: 'Germany'
+        )
+      end
+
       let(:contact) do
-        Xero::Models::Contact.new(name: 'Xero Gem Test Contact')
+        Xero::Models::Contact.new(
+          name: 'Xero Gem Test Contact', addresses: [address]
+        )
       end
 
       let(:line_items) { [line_item] }
 
       let(:line_item) do
         Xero::Models::LineItem.new(
-          description: 'A test line item from the xero gem',
-          quantity: 2.0,
-          unit_amount: 150.5,
-          account_code: 200
+          quantity: 2.0, item: item, description: 'asdfsdafdf'
+        )
+      end
+
+      let(:item) do
+        Xero::Models::Item.new(
+          code: 'stepstone', description: 'some bullshit description',
+          id: '99213658-83c4-438a-b104-1172b1e69790'
         )
       end
 

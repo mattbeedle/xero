@@ -8,7 +8,8 @@ module Xero
 
       attribute :type
       attribute :date, type: Date
-      attribute :due_date, type: Date
+      attribute :due_date, type: Date, default:
+        lambda { Date.parse(Xero.configuration.invoice_due_days.days.from_now.to_s).to_s }
       attribute :line_amount_type
       attribute :invoice_number
       attribute :reference
@@ -38,13 +39,26 @@ module Xero
       validates :line_items, presence: true
 
       def to_xero_xml
-        xero_attributes(attributes.clone).
-          merge('Contact' => contact.xero_attributes).
-          merge('LineItems' => line_items.xero_attributes).
-          merge('Payments' => payments.xero_attributes).
-          to_xml(root: 'Invoice')
+        xero_attributes(attributes.clone).tap do |attrs|
+          merge_contact(attrs) unless contact.blank?
+          merge_line_items(attrs) unless line_items.blank?
+          merge_payments(attrs) unless payments.blank?
+        end.to_xml(root: 'Invoice')
       end
 
+      private
+
+      def merge_contact(attrs)
+        attrs.merge!('Contact' => contact.xero_attributes)
+      end
+
+      def merge_line_items(attrs)
+        attrs.merge!('LineItems' => line_items.xero_attributes)
+      end
+
+      def merge_payments(attrs)
+        attrs.merge!('Payments' => payments.xero_attributes)
+      end
     end
   end
 end

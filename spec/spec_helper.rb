@@ -7,6 +7,7 @@
 
 require 'active_attr/rspec'
 require 'bundler/setup'
+require 'faker'
 require 'xero'
 require 'rubygems'
 require 'shoulda-matchers'

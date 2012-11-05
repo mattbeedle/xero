@@ -1,7 +1,14 @@
 module Xero
   class Configuration
 
-    attr_accessor :logger, :consumer_key, :consumer_secret, :private_key_path
+    attr_accessor :logger, :consumer_key, :consumer_secret, :private_key_path,
+      :invoice_due_days
+
+    def initialize(options = {})
+      default_options = { invoice_due_days: 30 }.merge(options)
+      default_options.each { |key, value| self.send("#{key}=", value) }
+      self
+    end
 
     def logger
       @logger || Logger.new(STDOUT)

@@ -14,8 +14,7 @@ module Xero
 
     def consumer
       @consumer ||= ::OAuth::Consumer.new(
-        Xero.configuration.consumer_key,
-        Xero.configuration.consumer_secret,
+        Xero.configuration.consumer_key, Xero.configuration.consumer_secret,
         self.consumer_options
       )
     end
@@ -47,11 +46,20 @@ module Xero
 
       headers = { 'charset' => 'utf-8' }
 
+      Xero.configuration.logger.debug(
+        "XERO::Connection #{method.upcase} #{uri} with #{params}"
+      )
+
       if method == :get
         response = access_token.get(uri, params)
       else
         response = access_token.post(uri, params, headers)
       end
+
+      Xero.configuration.logger.debug(
+        "XERO::Connection RESPONSE code: #{response} body: #{response.body}"
+      )
+
       handle_response(response)
     end
 
