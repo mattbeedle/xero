@@ -18,6 +18,7 @@ Gem::Specification.new do |gem|
   gem.require_paths = ['lib']
 
   gem.add_dependency('active_attr')
+  gem.add_dependency('activesupport')
   gem.add_dependency('oauth')
 
   gem.add_development_dependency('faker')
