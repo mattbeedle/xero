@@ -1,0 +1,76 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.xero.com/api.xro/2.0/Invoices
+    body:
+      encoding: US-ASCII
+      string: xml=%3C%3Fxml%20version%3D%221.0%22%20encoding%3D%22UTF-8%22%3F%3E%0A%3CInvoice%3E%0A%20%20%3CDueDate%3E2012-12-12%3C%2FDueDate%3E%0A%3C%2FInvoice%3E%0A
+    headers:
+      charset:
+      - utf-8
+      accept:
+      - ! '*/*'
+      user-agent:
+      - OAuth gem v0.4.7
+      content-length:
+      - '0'
+      content-type:
+      - application/x-www-form-urlencoded
+      authorization:
+      - OAuth oauth_consumer_key="TYMATGTPO5QEAWP8I307AOMBHSOJI2", oauth_nonce="knfwvngQrAeAmKXDXHWBeRzQnNbYvrk3IF2i5SmPCqY",
+        oauth_signature="uUJ1Ni0IiEz42VbQ7A1g6HwrNbA2gjir8l9gbikJju%2BOiBmPJz7d2DUTHMiFc5l%2B7gKT6NwXVWOsETu8FN1vzGC5e9InIYPJMU27Cf5Yw1T1jirSo7R595wrb%2Ffcyi6BytVL4Q0xeZOFFj2LcxbpzJhN4IKaCGRE%2BwKae4w5H%2Fg%3D",
+        oauth_signature_method="RSA-SHA1", oauth_timestamp="1352748950", oauth_token="TYMATGTPO5QEAWP8I307AOMBHSOJI2",
+        oauth_version="1.0"
+  response:
+    status:
+      code: 400
+      message: Bad Request
+    headers:
+      cache-control:
+      - private
+      content-type:
+      - text/xml; charset=utf-8
+      server:
+      - Microsoft-IIS/7.0
+      x-aspnetmvc-version:
+      - '2.0'
+      www-authenticate:
+      - OAuth Realm="api.xero.com"
+      x-aspnet-version:
+      - 4.0.30319
+      x-s:
+      - api2
+      x-powered-by:
+      - ASP.NET
+      date:
+      - Mon, 12 Nov 2012 19:35:56 GMT
+      connection:
+      - close
+      content-length:
+      - '1666'
+    body:
+      encoding: US-ASCII
+      string: ! "<ApiException xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\r\n
+        \ <ErrorNumber>10</ErrorNumber>\r\n  <Type>ValidationException</Type>\r\n
+        \ <Message>A validation exception occurred</Message>\r\n  <Elements>\r\n    <DataContractBase
+        xsi:type=\"Invoice\">\r\n      <ValidationErrors>\r\n        <ValidationError>\r\n
+        \         <Message>One or more line items must be specified</Message>\r\n
+        \       </ValidationError>\r\n        <ValidationError>\r\n          <Message>Invoice
+        Type must be specified</Message>\r\n        </ValidationError>\r\n        <ValidationError>\r\n
+        \         <Message>A Contact must be specified for this type of transaction</Message>\r\n
+        \       </ValidationError>\r\n      </ValidationErrors>\r\n      <Warnings
+        />\r\n      <Date>2012-11-12T00:00:00</Date>\r\n      <DueDate>2012-12-12T00:00:00</DueDate>\r\n
+        \     <BrandingThemeID xsi:nil=\"true\" />\r\n      <Status>DRAFT</Status>\r\n
+        \     <LineAmountTypes>Exclusive</LineAmountTypes>\r\n      <LineItems />\r\n
+        \     <SubTotal>0.00</SubTotal>\r\n      <TotalTax>0.00</TotalTax>\r\n      <Total>0.00</Total>\r\n
+        \     <UpdatedDateUTC xsi:nil=\"true\" />\r\n      <CurrencyCode>EUR</CurrencyCode>\r\n
+        \     <FullyPaidOnDate xsi:nil=\"true\" />\r\n      <InvoiceID>00000000-0000-0000-0000-000000000000</InvoiceID>\r\n
+        \     <Payments />\r\n      <CreditNotes />\r\n      <AmountDue xsi:nil=\"true\"
+        />\r\n      <AmountPaid xsi:nil=\"true\" />\r\n      <AmountCredited xsi:nil=\"true\"
+        />\r\n      <SentToContact xsi:nil=\"true\" />\r\n      <CurrencyRate xsi:nil=\"true\"
+        />\r\n      <TotalDiscount xsi:nil=\"true\" />\r\n      <HasAttachments>false</HasAttachments>\r\n
+        \     <Attachments />\r\n    </DataContractBase>\r\n  </Elements>\r\n</ApiException>"
+    http_version: '1.1'
+  recorded_at: Mon, 12 Nov 2012 19:35:53 GMT
+recorded_with: VCR 2.2.5

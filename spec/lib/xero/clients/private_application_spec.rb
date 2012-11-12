@@ -210,6 +210,20 @@ describe Xero::Clients::PrivateApplication do
     end
   end
 
+  context 'when saving an invalid invoice' do
+    before { configure }
+
+    let(:invoice) { Xero::Models::Invoice.new }
+
+    let(:response) do
+      VCR.use_cassette('save_invalid_invoice') { client.save(invoice) }
+    end
+
+    it 'should raise a BadRequest exception' do
+      expect { response }.to raise_error(Xero::Errors::BadRequest)
+    end
+  end
+
   describe '#get_item' do
 
     before { configure }

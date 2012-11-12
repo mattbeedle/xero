@@ -60,11 +60,22 @@ module Xero
         "XERO::Connection RESPONSE code: #{response} body: #{response.body}"
       )
 
-      handle_response(response)
+      handle_response(params, response)
     end
 
-    def handle_response(response)
-      response
+    def handle_response(request, response)
+      if response.code.to_i == 200
+        response
+      else
+        handle_error(request, response)
+      end
+    end
+
+    def handle_error(request, response)
+      case response.code.to_i
+      when 400
+        raise Xero::Errors::BadRequest.new(request, response.body)
+      end
     end
   end
 end
