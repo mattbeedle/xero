@@ -46,7 +46,7 @@ module Xero
 
       headers = { 'charset' => 'utf-8' }
 
-      Xero.configuration.logger.debug(
+      Xero.configuration.logger.info(
         "XERO::Connection #{method.upcase} #{uri} with #{params}"
       )
 
@@ -56,7 +56,7 @@ module Xero
         response = access_token.post(uri, params, headers)
       end
 
-      Xero.configuration.logger.debug(
+      Xero.configuration.logger.info(
         "XERO::Connection RESPONSE code: #{response} body: #{response.body}"
       )
 
