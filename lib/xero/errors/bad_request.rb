@@ -8,9 +8,9 @@ module Xero
         @request_xml = request_xml
         @response_xml = response_xml
         Hash.from_xml(response_xml).tap do |data|
-          @type = data[:Type]
-          @message = data[:Message]
-          @error_number = data[:ErrorNumber]
+          @type = data['ApiException']['Type']
+          @message = data['ApiException']['Message']
+          @error_number = data['ApiException']['ErrorNumber']
         end
         self
       end
