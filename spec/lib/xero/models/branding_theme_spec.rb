@@ -1,5 +1,5 @@
 require 'spec_helper'
 
-describe Xero::Client do
+describe Xero::Models::Invoice do
   pending
 end

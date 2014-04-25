@@ -50,6 +50,21 @@ module Xero
       invoices_attributes.map { |attrs| Xero::Models::Invoice.new(attrs) }
     end
 
+    def get_branding_theme(branding_theme_id)
+      response = self.connection.get_by_id(
+        Xero::Models::BrandingTheme.path, branding_theme_id
+      )
+      Xero::Models::BrandingTheme.new(
+        hash_from_response(response, 'BrandingThemes')
+      )
+    end
+
+    def get_branding_themes
+      response = self.connection.get(Xero::Models::BrandingTheme.path)
+      items = hash_from_response(response, 'BrandingThemes')
+      items.map { |item| Xero::Models::BrandingTheme.new(item) }
+    end
+
     def save(model)
       model.tap do |item|
         response = self.connection.post(model.class.path, model.to_xero_xml)

@@ -29,6 +29,7 @@ module Xero
       attribute :has_attachments, type: Boolean
       attribute :sent_to_contact, type: Boolean
       attribute :currency_rate
+      attribute :branding_theme_id
 
       has_one  :contact
       has_many :line_items
