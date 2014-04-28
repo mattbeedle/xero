@@ -1,5 +1,5 @@
 require 'spec_helper'
 
-describe Xero::Models::Invoice do
+describe Xero::Models::BrandingTheme do
   pending
 end

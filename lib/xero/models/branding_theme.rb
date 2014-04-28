@@ -1,6 +1,6 @@
 module Xero
   module Models
-    class BrandingModel < Xero::Models::BaseModel
+    class BrandingTheme < Xero::Models::BaseModel
       self.path = 'BrandingThemes'
 
       attribute :name
