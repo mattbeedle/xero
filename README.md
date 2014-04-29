@@ -1,3 +1,6 @@
+[![Build
+Status](https://travis-ci.org/mattbeedle/xero.svg?branch=master)](https://travis-ci.org/mattbeedle/xero)
+
 # Xero
 
 ActiveModel compliant library for talking with the Xero API
