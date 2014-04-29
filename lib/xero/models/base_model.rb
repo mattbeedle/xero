@@ -36,10 +36,14 @@ module Xero
         attrs.keys.each do |key|
           value = attrs.delete(key)
           value = xero_attributes(value) if value.is_a?(Hash)
-          attrs[key.to_s.camelize] = value.to_s unless value.blank?
+          attrs[build_xero_key(key)] = value.to_s unless value.blank?
         end
         attrs.merge!("#{self.class.to_s.demodulize}ID" => id) unless id.blank?
         attrs
+      end
+
+      def build_xero_key(key)
+        key.to_s.camelize.gsub(/Id$/, 'ID')
       end
 
       def cleanup_hash(hash)
@@ -47,10 +51,14 @@ module Xero
           value = hash.delete(key)
           value = cleanup_hash(value) if value.is_a?(Hash)
           key = key.to_s.underscore
-          key = 'id' if key.match(/_id/)
+          key = 'id' if key == id_attribute
           hash[key] = value
         end
         hash
+      end
+
+      def id_attribute
+        @id_attribute ||= "#{self.class.name.demodulize.underscore}_id"
       end
 
       def persisted?
