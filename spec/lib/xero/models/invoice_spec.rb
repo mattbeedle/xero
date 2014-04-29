@@ -1,14 +1,18 @@
 require 'spec_helper'
 
 describe Xero::Models::Invoice do
-
   before { configure }
 
   it { should validate_presence_of(:type) }
 
   it { should validate_presence_of(:contact) }
 
-  it { should validate_presence_of(:line_items) }
+  it 'should validates presence of line items' do
+    subject.line_items = nil
+    subject.valid?
+
+    expect(subject.errors).to include(:line_items)
+  end
 
   describe 'defaults' do
     let(:invoice) { Xero::Models::Invoice.new }

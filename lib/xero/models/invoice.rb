@@ -8,8 +8,9 @@ module Xero
 
       attribute :type
       attribute :date, type: Date
-      attribute :due_date, type: Date, default:
-        lambda { Date.parse(Xero.configuration.invoice_due_days.days.from_now.to_s).to_s }
+      attribute :due_date, type: Date, default: lambda {
+        Date.parse(Xero.configuration.invoice_due_days.days.from_now.to_s).to_s
+      }
       attribute :line_amount_type
       attribute :invoice_number
       attribute :reference

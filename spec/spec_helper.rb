@@ -5,11 +5,10 @@
 #
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 
-require 'active_attr/rspec'
 require 'bundler/setup'
+require 'active_attr/rspec'
 require 'faker'
 require 'xero'
-require 'rubygems'
 require 'shoulda/matchers/active_record'
 require 'shoulda-matchers'
 require 'support/helpers'
